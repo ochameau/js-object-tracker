@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+//////////////////
+// Leak simulation
+(function scoped() {
+  var leak = {foo:"bar"};
+  mem.track(leak);
+  
+  var scopeLeak = leak;
+  document.addEventListener("load", function scopeLeakFunction() {
+    scopeLeak;
+  });
+
+  document.refLeak = leak;
+
+  for(var i = 0; i < 2; i++) {
+    mem.track({});
+  }
+})();
+</script>
+
+<pre>
+&lt;script>
+//////////////////
+// Leak simulation
+(function scoped() {
+  var leak = {foo:"bar"};
+  mem.track(leak);
+
+  var scopeLeak = leak;
+  document.addEventListener("load", function scopeLeakFunction() {
+    scopeLeak;
+  });
+
+  document.refLeak = leak;
+
+  for(var i = 0; i < 2; i++) {
+    mem.track({});
+  }
+})();
+&lt;/script>
+</pre>
