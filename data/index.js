@@ -1,3 +1,6 @@
+const Cu = Components.utils;
+Cu.import("resource:///modules/devtools/SideMenuWidget.jsm");
+Cu.import("resource:///modules/devtools/ViewHelpers.jsm");
 
 var menu = new SideMenuWidget(document.getElementById("sources"));
 menu.addEventListener("click", function (e) {

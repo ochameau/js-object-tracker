@@ -6,10 +6,6 @@
 
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml">
-
-  <script src="ViewHelpers.js" type="application/javascript;version=1.8"></script>
-  <script src="SideMenuWidget.js" type="application/javascript;version=1.8"></script>
-
   <hbox flex="1">
     <vbox id="sources" />
     <html:ul id="root" flex="1" style="font-family: Courier New;"></html:ul>
