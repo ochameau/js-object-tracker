@@ -3,13 +3,40 @@
 <?xml-stylesheet href="chrome://browser/content/devtools/widgets.css" type="text/css"?>
 <?xml-stylesheet href="chrome://browser/skin/devtools/common.css" type="text/css"?>
 <?xml-stylesheet href="chrome://browser/skin/devtools/widgets.css" type="text/css"?>
+<?xml-stylesheet href="index.css" type="text/css"?>
 
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml">
-  <hbox flex="1">
-    <vbox id="sources" />
-    <html:ul id="root" flex="1" style="font-family: Courier New;"></html:ul>
+  <hbox>
+    <toolbar id="memtool-toolbar" class="devtools-toolbar" flex="1">
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="Tracked objects" view="tracked" />
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="Dead wrappers" view="dead" />
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="CC list" view="cc-fragments" />
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="CC JS list" view="cc-js-fragments" />
+    </toolbar>
+    <toolbar id="memtool-actions" class="devtools-toolbar" style="border-top: 0;">
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="Refresh" action="refresh" />
+      <toolbarbutton class="devtools-toolbarbutton"
+                     label="Dump CC to file" action="cc" />
+    </toolbar>
   </hbox>
-  
+  <hbox flex="1">
+    <vbox id="sources" flex="1" />
+    <vbox style="overflow:auto;" flex="1">
+      <html:ul id="root" flex="1" xmlns="http://www.w3.org/1999/xhtml">
+        Please select a view in the left upper menu.
+        <li><b>Tracked objects</b>: Web pages objects being passed to `mem.track()` function</li>
+        <li><b>Dead wrappers</b>: List of dead wrappers (wrappers of a content object whose compartment has been nuked)</li>
+        <li><b>CC list</b>: List FragmentOrElement objects being in the optimized CC list</li>
+        <li><b>CC JS list</b>: List first JS Objects owning any FragmentOrElement objects being in the optimized CC list</li>
+      </html:ul>
+    </vbox>
+  </hbox>
+
   <script src="index.js" type="application/javascript;version=1.8"></script>
 </window>

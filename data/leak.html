@@ -3,19 +3,22 @@
 <script>
 //////////////////
 // Leak simulation
+var listener;
 (function scoped() {
   var leak = {foo:"bar"};
   mem.track(leak);
   
   var scopeLeak = leak;
-  document.addEventListener("load", function scopeLeakFunction() {
+  listener = function scopeLeakFunction() {
     scopeLeak;
-  });
+  }
+  document.addEventListener("load", listener);
 
   document.refLeak = leak;
 
+  function Foo() {};
   for(var i = 0; i < 2; i++) {
-    mem.track({});
+    mem.track(new Foo());
   }
 })();
 </script>
@@ -24,19 +27,22 @@
 &lt;script>
 //////////////////
 // Leak simulation
+var listener;
 (function scoped() {
   var leak = {foo:"bar"};
   mem.track(leak);
-
+  
   var scopeLeak = leak;
-  document.addEventListener("load", function scopeLeakFunction() {
+  listener = function scopeLeakFunction() {
     scopeLeak;
-  });
+  }
+  document.addEventListener("load", listener);
 
   document.refLeak = leak;
 
+  function Foo() {};
   for(var i = 0; i < 2; i++) {
-    mem.track({});
+    mem.track(new Foo());
   }
 })();
 &lt;/script>
