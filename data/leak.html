@@ -20,6 +20,16 @@ var listener;
   for(var i = 0; i < 2; i++) {
     mem.track(new Foo());
   }
+  var req = mem.snap();
+  req.then(function () {
+    setTimeout(function () {
+      window.plop = {};
+      window.plop2 = {};
+      window.plop3 = {};
+      window.plop4 = document.createElement("div");
+      mem.snap();
+    }, 2000);
+  });
 })();
 </script>
 
@@ -44,6 +54,16 @@ var listener;
   for(var i = 0; i < 2; i++) {
     mem.track(new Foo());
   }
+  var req = mem.snap();
+  req.then(function () {
+    setTimeout(function () {
+      window.plop = {};
+      window.plop2 = {};
+      window.plop3 = {};
+      window.plop4 = document.createElement("div");
+      mem.snap();
+    }, 2000);
+  });
 })();
 &lt;/script>
 </pre>

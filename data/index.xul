@@ -12,6 +12,8 @@
       <toolbarbutton class="devtools-toolbarbutton"
                      label="Tracked objects" view="tracked" />
       <toolbarbutton class="devtools-toolbarbutton"
+                     label="Snapshots" view="snapshots" />
+      <toolbarbutton class="devtools-toolbarbutton"
                      label="Dead wrappers" view="dead" />
       <toolbarbutton class="devtools-toolbarbutton"
                      label="CC list" view="cc-fragments" />
