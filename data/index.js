@@ -68,7 +68,7 @@ function updateObjectList(analyzer, objects) {
     let description = getObjectTitle(obj);
     if (obj.location) {
       let m = obj.location.filename.match(/\/(\w+\.\w+)$/);
-      description = m[1] + ":" + obj.location.line;
+      description = (m ? m[1] : obj.location.filename) + ":" + obj.location.line;
     }
     label.setAttribute("value", description);
     label.object = obj;
