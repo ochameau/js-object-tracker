@@ -10,17 +10,13 @@
   <hbox>
     <toolbar id="memtool-toolbar" class="devtools-toolbar" flex="1">
       <toolbarbutton class="devtools-toolbarbutton"
-                     label="Tracked objects" view="tracked" />
+                     label="start" view="tracked" oncommand="start()"/>
       <toolbarbutton class="devtools-toolbarbutton"
-                     label="Snapshots" view="snapshots" />
+                     label="stop" view="tracked" oncommand="stop()" />
       <toolbarbutton class="devtools-toolbarbutton"
-                     label="Dead wrappers" view="dead" />
-      <toolbarbutton class="devtools-toolbarbutton"
-                     label="CC list" view="cc-fragments" />
-      <toolbarbutton class="devtools-toolbarbutton"
-                     label="CC JS list" view="cc-js-fragments" />
+                     label="get profile" view="tracked" oncommand="getProfile()" />
     </toolbar>
-    <toolbar id="memtool-actions" class="devtools-toolbar" style="border-top: 0;">
+    <toolbar id="memtool-actions" class="devtools-toolbar" style="border-top: 0;" hidden="true">
       <toolbarbutton class="devtools-toolbarbutton"
                      label="Refresh" action="refresh" />
       <toolbarbutton class="devtools-toolbarbutton"
@@ -31,11 +27,22 @@
     <vbox id="sources" flex="1" />
     <vbox style="overflow:auto;" flex="1">
       <html:ul id="root" flex="1" xmlns="http://www.w3.org/1999/xhtml">
+      <li> Click on "start" to ensure fetching only content Zone.
+      (otherwise, the profile will also contain system principal Zone objects,
+       and be quite big)</li>
+      <li>Click on "get profile" to fetch memory json blob describing currently alive js objects</li>
+      <li>The json blob sort all objects by parents (JS_GetParent). So that you get all known parent objects in "parents" field,
+      and get for each of them a list of child objects in a "childs" field. Each object eventually have an "allocation" attribute
+      with some info about where it has been allocation in JS source code.<br/>
+      The objects that don't have any parent are put in "unclassifieds" list.
+      </li>
+      <!--
         Please select a view in the left upper menu.
         <li><b>Tracked objects</b>: Web pages objects being passed to `mem.track()` function</li>
         <li><b>Dead wrappers</b>: List of dead wrappers (wrappers of a content object whose compartment has been nuked)</li>
         <li><b>CC list</b>: List FragmentOrElement objects being in the optimized CC list</li>
         <li><b>CC JS list</b>: List first JS Objects owning any FragmentOrElement objects being in the optimized CC list</li>
+      -->
       </html:ul>
     </vbox>
   </hbox>

@@ -6,6 +6,7 @@ Cu.import("resource:///modules/devtools/ViewHelpers.jsm");
 let toolbar = document.getElementById("memtool-toolbar");
 let currentView = "";
 toolbar.addEventListener("click", function (event) {
+  return;
   let view = event.target.getAttribute("view");
   if (view) {
     currentView = view;
@@ -16,6 +17,7 @@ toolbar.addEventListener("click", function (event) {
 // Listen for clicks on the second toolbar
 let actions = document.getElementById("memtool-actions");
 actions.addEventListener("click", function (event) {
+  return;
   let action = event.target.getAttribute("action");
   if (action == "refresh")
     update(currentView);
